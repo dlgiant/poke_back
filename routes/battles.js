@@ -75,7 +75,6 @@ router.get("/losses/:name", async (req, res) => {
       if (err) {
         throw err;
       }
-      console.log(battle);
       res.status(200).json({
         losses: battle.C
       });
@@ -89,12 +88,10 @@ router.get("/losses/:name", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
   let db = new sqlite3.Database('./sample.db', (err) => {
     if (err) {
       return console.error(err.message);
     }
-    console.log("Connected to database");
   });
 
   const sql = `INSERT INTO battles (winner, loser) VALUES (?, ?)`
@@ -102,14 +99,12 @@ router.post("/", async (req, res) => {
     if (err) {
       return console.error(err.message);
     }
-    console.log(`Rows inserted ${this.changes}`);
   });
 
   db.close((err) => {
     if (err) {
       return console.error(err.message);
     }
-    console.log('Closing database connection');
   });
 });
 
