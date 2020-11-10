@@ -54,7 +54,6 @@ router.get("/wins/:name", async (req, res) => {
       if (err) {
         throw err;
       }
-      console.log(battle);
       res.status(200).json({
         wins: battle.C
       });
